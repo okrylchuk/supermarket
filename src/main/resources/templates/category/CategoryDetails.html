@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>List Employees</title>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>List Employees</h3>
+
+    <hr/>
+    <a th:href="@{/addCategoryForm}" class="btn btn-primary">Add Employee</a>
+    <br/><br/>
+    <table class="table table-bordered table-striped" id="category-table">
+
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category: ${categoryList}">
+            <td th:text="${category.category_id}" />
+            <td th:text="${category.category_name}" />
+            <td>
+                <a th:href="@{/showEditForm(id=${category.category_id})}" class="btn btn-info">Update</a>
+                <a th:href="@{/deleteCategory(id=${category.category_id})}" class="btn btn-danger ml-2">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#category-table").DataTable();
+    })
+</script>
+</body>
