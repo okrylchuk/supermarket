@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>List Employees</title>
+    <title>Categories List</title>
     <link rel="stylesheet"
           type="text/css"
           href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
@@ -16,10 +16,10 @@
 
 <div class="container">
 
-    <h3>List Employees</h3>
+    <h3>Categories List</h3>
 
     <hr/>
-    <a th:href="@{/addCategoryForm}" class="btn btn-primary">Add Employee</a>
+    <a th:href="@{/addCategoryForm}" class="btn btn-primary">Add Category</a>
     <br/><br/>
     <table class="table table-bordered table-striped" id="category-table">
 
@@ -32,9 +32,9 @@
         </thead>
         <tbody>
         <tr th:each="category: ${categoryList}">
-            <td th:text="${category.category_id}" />
+            <td th:text="${category.category_id}" th:width="50" />
             <td th:text="${category.category_name}" />
-            <td>
+            <td th:width="200">
                 <a th:href="@{/showEditForm(id=${category.category_id})}" class="btn btn-info">Update</a>
                 <a th:href="@{/deleteCategory(id=${category.category_id})}" class="btn btn-danger ml-2">Delete</a>
             </td>
@@ -47,7 +47,12 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
 <script>
     $(document).ready(function () {
-        $("#category-table").DataTable();
+        $("#category-table").DataTable({
+            'aoColumnDefs' : [{
+                'bSortable' : false,
+                'aTargets' : [-1]
+            }]
+        });
     })
 </script>
 </body>

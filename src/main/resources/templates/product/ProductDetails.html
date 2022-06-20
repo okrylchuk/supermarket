@@ -26,8 +26,9 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Category Name</th>
+            <th>Category</th>
             <th>Product Name</th>
+            <th>Producer</th>
             <th>Characteristics</th>
             <th>Action</th>
 
@@ -38,6 +39,7 @@
             <td th:text="${product.id_product}" />
             <td th:text="${product.category_name}" />
             <td th:text="${product.product_name}" />
+            <td th:text="${product.producer}" />
             <td th:text="${product.product_characteristics}" />
             <td>
                 <a th:href="@{/productEditForm(id=${product.id_product})}" class="btn btn-info">Update</a>
@@ -52,7 +54,12 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
 <script>
     $(document).ready(function () {
-        $("#category-table").DataTable();
+        $("#category-table").DataTable({
+            'aoColumnDefs' : [{
+                'bSortable' : false,
+                'aTargets' : [-1]
+            }]
+        });
     })
 </script>
 </body>
