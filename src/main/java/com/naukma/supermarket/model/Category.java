@@ -10,7 +10,7 @@ import lombok.*;
 
 public class Category {
 
-    private long category_id;
+    private Long category_id;
     private String category_name;
 
     @Override
