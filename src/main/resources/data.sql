@@ -12,3 +12,7 @@ INSERT INTO Store_Product(upc, selling_price, products_number, id_product) value
 INSERT INTO Store_Product(upc, selling_price, products_number, id_product) values ('a3',2.99,15,1);
 INSERT INTO Store_Product(upc, selling_price, products_number, id_product) values ('a4',2.99,15,3);
 INSERT INTO Store_Product(upc, selling_price, products_number, id_product) values ('a5',2.99,15,2);
+
+INSERT INTO Employee (id_employee, email, password, empl_role, status)
+VALUES (1, 'antonko888', 'pass', 'ADMIN', 'ACTIVE');
+
