@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>Categories List</title>
@@ -19,8 +19,11 @@
     <h3>Categories List</h3>
 
     <hr/>
-    <a th:href="@{/addCategoryForm}" class="btn btn-primary">Add Category</a>
-    <br/><br/>
+    <div sec:authorize="hasAuthority('category:write')">
+        <a th:href="@{/addCategoryForm}" class="btn btn-primary">Add Category</a>
+        <br/><br/>
+    </div>
+
     <table class="table table-bordered table-striped" id="category-table">
 
         <thead>
@@ -35,8 +38,8 @@
             <td th:text="${category.category_id}" th:width="50" />
             <td th:text="${category.category_name}" />
             <td th:width="200">
-                <a th:href="@{/showEditForm(id=${category.category_id})}" class="btn btn-info">Update</a>
-                <a th:href="@{/deleteCategory(id=${category.category_id})}" class="btn btn-danger ml-2">Delete</a>
+                <a th:href="@{/showEditForm(id=${category.category_id})}" sec:authorize="hasAuthority('category:write')" class="btn btn-info">Update</a>
+                <a th:href="@{/deleteCategory(id=${category.category_id})}" sec:authorize="hasAuthority('category:write')" class="btn btn-danger ml-2">Delete</a>
             </td>
         </tr>
         </tbody>

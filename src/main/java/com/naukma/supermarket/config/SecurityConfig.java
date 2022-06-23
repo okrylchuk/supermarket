@@ -1,5 +1,6 @@
 package com.naukma.supermarket.config;
 
+import com.naukma.supermarket.handler.AccessDeniedHandlerImpl;
 import com.naukma.supermarket.model.security.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -39,8 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler())
+                .and()
                 .formLogin()
-                .loginPage("/auth/login").permitAll()
+                .loginPage("/auth/login").failureUrl("/auth/login-error").permitAll()
                 .defaultSuccessUrl("/categories")
                 .and()
                 .logout()
@@ -62,7 +66,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new AccessDeniedHandlerImpl();
+    }
+
+    @Bean
     protected DaoAuthenticationProvider daoAuthenticationProvider() {
+
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
