@@ -7,9 +7,16 @@ import java.util.stream.Collectors;
 
 public enum Role {
 
-
     USER(Set.of(Permission.CATEGORY_READ)),
     ADMIN(Set.of(Permission.CATEGORY_WRITE, Permission.CATEGORY_READ));
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "permissions=" + permissions +
+                '}';
+    }
+
     private final Set<Permission> permissions;
 
 

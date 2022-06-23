@@ -1,13 +1,14 @@
 package com.naukma.supermarket.model;
 
 import com.naukma.supermarket.model.security.Role;
+import com.naukma.supermarket.model.security.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.Date;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
 
 

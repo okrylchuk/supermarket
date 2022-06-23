@@ -1,7 +1,7 @@
 package com.naukma.supermarket.security;
 
 import com.naukma.supermarket.model.Employee;
-import com.naukma.supermarket.model.Status;
+import com.naukma.supermarket.model.security.Status;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

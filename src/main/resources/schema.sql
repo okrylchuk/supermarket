@@ -27,7 +27,7 @@ CREATE TABLE Employee
 (
     id_employee     VARCHAR(10) NOT NULL,
     email           VARCHAR(50) NOT NULL,
-    password        VARCHAR(50) NOT NULL,
+    password        VARCHAR(100) NOT NULL,
     empl_role       VARCHAR(10) NOT NULL,
     status          VARCHAR(10) NOT NULL,
     PRIMARY KEY (id_employee)

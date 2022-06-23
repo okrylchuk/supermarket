@@ -14,5 +14,7 @@ INSERT INTO Store_Product(upc, selling_price, products_number, id_product) value
 INSERT INTO Store_Product(upc, selling_price, products_number, id_product) values ('a5',2.99,15,2);
 
 INSERT INTO Employee (id_employee, email, password, empl_role, status)
-VALUES (1, 'antonko888', 'pass', 'ADMIN', 'ACTIVE');
+VALUES (1, 'admin', '$2a$12$8Iym3DU0oQLVl9jd4MpAXObhe5WXfpRway1uQPERNNiowL.QAxZxO', 'ADMIN', 'ACTIVE');
+INSERT INTO Employee (id_employee, email, password, empl_role, status)
+VALUES (2, 'user', '$2a$12$qTlzpZfcALHCYTbAfNU8Teqkb.3IfxpNyheTUcPbOeAkvA..9kQmW', 'USER', 'ACTIVE');
 
