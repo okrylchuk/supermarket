@@ -25,14 +25,14 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     // UPDATE
     @Override
     public int update(Category category) {
-        return jdbcTemplate.update("UPDATE category SET category_name=? WHERE category_id=?",
-                new Object[] { category.getCategory_name(), category.getCategory_id() });
+        return jdbcTemplate.update("UPDATE category SET category_name=? WHERE category_number=?",
+                new Object[] { category.getCategory_name(), category.getCategory_number() });
     }
 
     @Override
     public Category findById(long id) {
         try {
-            Category category = jdbcTemplate.queryForObject("SELECT * FROM category WHERE category_id=?",
+            Category category = jdbcTemplate.queryForObject("SELECT * FROM category WHERE category_number=?",
                     BeanPropertyRowMapper.newInstance(Category.class), id);
             return category;
         } catch (IncorrectResultSizeDataAccessException e) {
@@ -60,7 +60,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     // DELETE ONE
     @Override
     public int deleteById(long id) {
-        return jdbcTemplate.update("DELETE FROM category WHERE category_id=?", id);
+        return jdbcTemplate.update("DELETE FROM category WHERE category_number=?", id);
     }
 
     // DELETE ALL

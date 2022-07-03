@@ -18,9 +18,9 @@ public class ProductRepositoryImpl implements ProductRepository {
     // CREATE
     @Override
     public int save(Product product) {
-        return jdbcTemplate.update("INSERT INTO Product (product_name, producer, product_characteristics, category_id) VALUES (?,?,?,?)",
+        return jdbcTemplate.update("INSERT INTO Product (product_name, producer, product_characteristics, category_number) VALUES (?,?,?,?)",
                 new Object[] { product.getProduct_name(), product.getProducer(), product.getProduct_characteristics(),
-                        product.getCategory_id() });
+                        product.getCategory_number() });
     }
 
     // UPDATE
@@ -43,9 +43,9 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     // READ ALL
-    String str = "SELECT PRODUCT.ID_PRODUCT, PRODUCT.PRODUCT_NAME, PRODUCT.PRODUCER, PRODUCT.PRODUCT_CHARACTERISTICS, PRODUCT.CATEGORY_ID, CATEGORY.CATEGORY_NAME \n" +
+    String str = "SELECT PRODUCT.ID_PRODUCT, PRODUCT.PRODUCT_NAME, PRODUCT.PRODUCER, PRODUCT.PRODUCT_CHARACTERISTICS, PRODUCT.CATEGORY_NUMBER, CATEGORY.CATEGORY_NAME \n" +
             "FROM PRODUCT \n" +
-            "INNER JOIN CATEGORY on PRODUCT.CATEGORY_ID = CATEGORY.CATEGORY_ID;";
+            "INNER JOIN CATEGORY on PRODUCT.CATEGORY_NUMBER = CATEGORY.CATEGORY_NUMBER;";
     @Override
     public List<Product> findAll() {
 
