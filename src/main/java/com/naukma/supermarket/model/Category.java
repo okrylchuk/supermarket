@@ -10,13 +10,13 @@ import lombok.*;
 
 public class Category {
 
-    private long category_id;
+    private long category_number;
     private String category_name;
 
     @Override
     public String toString() {
         return "Category{" +
-                "category_number=" + category_id +
+                "category_number=" + category_number +
                 ", category_name='" + category_name + '\'' +
                 '}';
     }

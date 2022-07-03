@@ -1,0 +1,58 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Product</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Add New Product</h3>
+    <hr/>
+
+    <form th:action="@{/saveStoreProduct}" th:object="${product}" method="POST">
+
+        <!--        <input type="text" th:field="*{category_id}" class="form-control col-4 mb-4" placeholder="Enter Id" />-->
+
+
+        <input type="text" th:field="*{upc}" class="form-control col-4 mb-4" placeholder="Enter UPC" />
+        Enter Price
+        <input type="text" th:field="*{selling_price}" class="form-control col-4 mb-4" placeholder="Enter Price" />
+        Enter Quantity
+        <input type="text" th:field="*{products_number}" class="form-control col-4 mb-4" placeholder="Enter Quantity" />
+        Enter Date
+        <input type="text" th:field="*{exp_date}" class="form-control col-4 mb-4" placeholder="Enter Date" />
+
+        Choose Product
+        <select th:field="*{id_product}" class="form-control col-4 mb-4">
+            <th:block th:each="product : ${listProducts}">
+                <option th:text="${product.product_name + ', ' + product.producer}"
+                        th:value="${product.id_product}" ></option>
+            </th:block>
+
+        </select>
+
+        <!--<select th:field="*{upc_prom}" class="form-control col-4 mb-4">
+            <option th:text="null" th:value=null></option>
+            <th:block th:each="product : ${listStoreProducts}">
+                <option th:text="${product.upc}"
+                        th:value="${product.upc}"></option>
+            </th:block>
+
+        </select>-->
+
+
+        <button type="submit" class="btn btn-primary col-2">Save</button>
+        <!--    <input type="hidden" th:field="*{id_product}" />-->
+    </form>
+    <hr/>
+    <a th:href="@{/store_products}">Back to list</a>
+</div>
+
+</body>
+</html>

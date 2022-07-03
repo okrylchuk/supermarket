@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Categories List</title>
+    <title>Product List</title>
     <link rel="stylesheet"
           type="text/css"
           href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
@@ -16,27 +16,36 @@
 
 <div class="container">
 
-    <h3>Categories List</h3>
+    <h3>Product List</h3>
 
     <hr/>
-    <a th:href="@{/addCategoryForm}" class="btn btn-primary">Add Category</a>
+    <a th:href="@{/store_productAddForm}" class="btn btn-primary">Add Product</a>
     <br/><br/>
     <table class="table table-bordered table-striped" id="category-table">
 
         <thead>
         <tr>
-            <th>Id</th>
+            <th>UPC</th>
             <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Promotional Product</th>
             <th>Action</th>
+
+
         </tr>
         </thead>
         <tbody>
-        <tr th:each="category: ${categoryList}">
-            <td th:text="${category.category_number}" th:width="50" />
-            <td th:text="${category.category_name}" />
-            <td th:width="200">
-                <a th:href="@{/showEditForm(id=${category.category_number})}" class="btn btn-info">Update</a>
-                <a th:href="@{/deleteCategory(id=${category.category_number})}" class="btn btn-danger ml-2">Delete</a>
+        <tr th:each="product: ${productList}">
+            <td th:text="${product.upc}" />
+            <td th:text="${product.product_name}" />
+            <td th:text="${product.selling_price}" />
+            <td th:text="${product.products_number}" />
+            <td th:text="${product.promotional_product}" />
+
+            <td>
+              <a th:href="@{/storeProductEditForm(id=${product.upc})}" class="btn btn-info">Update</a>
+              <a th:href="@{/deleteProduct(id=${product.upc})}" class="btn btn-danger ml-2">Delete</a>
             </td>
         </tr>
         </tbody>
@@ -45,7 +54,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
-<script>
+<!--<script>
     $(document).ready(function () {
         $("#category-table").DataTable({
             'aoColumnDefs' : [{
@@ -54,5 +63,5 @@
             }]
         });
     })
-</script>
+</script>-->
 </body>

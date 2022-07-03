@@ -25,10 +25,10 @@
 
 <!--    <input type="text" th:field="*{category_id}" class="form-control col-4 mb-4" placeholder="Enter Name" />-->
 
-    <select th:field="*{category_id}" class="form-control col-4 mb-4">
+    <select th:field="*{category_number}" class="form-control col-4 mb-4">
       <th:block th:each="category : ${listCategories}">
         <option th:text="${category.category_name}"
-                th:value="${category.category_id}" ></option>
+                th:value="${category.category_number}" ></option>
       </th:block>
 
     </select>

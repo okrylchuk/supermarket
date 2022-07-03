@@ -1,0 +1,31 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Edit Product</title>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+<body>
+
+<div class="container">
+
+  <h3>Edit Product</h3>
+  <hr/>
+
+  <form th:action="@{/editStoreProduct}" th:object="${product}" method="POST">
+
+    <input type="text" th:field="*{selling_price}" class="form-control col-4 mb-4" placeholder="Enter Price" />
+    <input type="text" th:field="*{products_number}" class="form-control col-4 mb-4" placeholder="Enter Number" />
+
+    <button type="submit" class="btn btn-primary col-2">Save</button>
+    <input type="hidden" th:field="*{upc}" />
+  </form>
+  <hr/>
+  <a th:href="@{/store_products}">Back to Products</a>
+</div>
+
+</body>
+</html>

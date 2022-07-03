@@ -15,7 +15,7 @@
     <h3>Edit Product</h3>
     <hr/>
 
-    <form th:action="@{/editProduct}" th:object="${product}" method="POST">
+    <form th:action="@{/editStoreProduct}" th:object="${product}" method="POST">
 
         <!--    <input type="text" th:field="*{category_id}" class="form-control col-4 mb-4" placeholder="Enter Id" />-->
 
@@ -34,7 +34,7 @@
         <input type="hidden" th:field="*{id_product}" />
     </form>
     <hr/>
-    <a th:href="@{/products}">Back to Products</a>
+    <a th:href="@{/store_products}">Back to Products</a>
 </div>
 
 </body>

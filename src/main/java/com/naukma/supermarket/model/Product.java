@@ -16,7 +16,7 @@ public class Product {
     private String product_name;
     private String producer;
     private String product_characteristics;
-    private long category_id;
+    private long category_number;
     private String category_name;
 
     @Override
@@ -26,7 +26,7 @@ public class Product {
                 ", product_name='" + product_name + '\'' +
                 ", producer='" + producer + '\'' +
                 ", product_characteristics='" + product_characteristics + '\'' +
-                ", category_id=" + category_id +
+                ", category_id=" + category_number +
                 ", category_name='" + category_name + '\'' +
                 '}';
     }
