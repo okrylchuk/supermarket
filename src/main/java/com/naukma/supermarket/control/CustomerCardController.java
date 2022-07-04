@@ -14,50 +14,50 @@ public class CustomerCardController {
 
     @Autowired
     private CustomerCardRepository customerCardRepository;
+    private String oldKey;
 
 
     @RequestMapping(value = "/customer_cards", method = RequestMethod.GET)
     public ModelAndView showAll() {
         ModelAndView modelAndView = new ModelAndView();
         List<CustomerCard> customerCardList = customerCardRepository.findAll();
-        modelAndView.setViewName("CustomerCardDetails");
+        modelAndView.setViewName("/customer_card/CustomerCardDetails");
         modelAndView.addObject("customerCardList", customerCardList);
         return modelAndView;
     }
 
-    /*@GetMapping("/productAddForm")
-    public String productAddForm(Model model) {
-        List<Category> listCategories = categoryRepository.findAll();
-        model.addAttribute("product", new Product());
-        model.addAttribute("listCategories", listCategories);
-        return "product/add-product-form";
-    }
-
-    @PostMapping("/saveProduct")
-    public String saveProduct(@ModelAttribute Product product) {
-        productRepository.save(product);
-        return "redirect:/products";
-    }
-
-    @GetMapping("/productEditForm")
-    public ModelAndView productEditForm(@RequestParam Long id) {
-        ModelAndView mav = new ModelAndView("/product/edit-product-form");
-        //List<Category> listCategories = categoryRepository.findAll();
-        Product product = productRepository.findById(id);
-        mav.addObject("product", product);
-        //mav.addObject("listCategories", listCategories);
+    @GetMapping({"/CustomerCardAddForm"})
+    public ModelAndView CustomerCardAddForm() {
+        ModelAndView mav = new ModelAndView("/customer_card/customer_card-add-form");
+        CustomerCard customerCard = new CustomerCard();
+        mav.addObject("customerCard", customerCard);
         return mav;
     }
 
-    @PostMapping("/editProduct")
-    public String editProduct(@ModelAttribute Product product) {
-        productRepository.update(product);
-        return "redirect:/products";
+    @PostMapping("/saveCustomerCard")
+    public String saveCustomerCard(@ModelAttribute CustomerCard card) {
+        customerCardRepository.save(card);
+        return "redirect:/customer_cards";
     }
 
-    @GetMapping("/deleteProduct")
-    public String deleteProduct(@RequestParam Long id) {
-        productRepository.deleteById(id);
-        return "redirect:/products";
-    }*/
+    @GetMapping("/customerCardEditForm")
+    public ModelAndView customerCardEditForm(@RequestParam String id) {
+        ModelAndView mav = new ModelAndView("/customer_card/customer_card-edit-form");
+        CustomerCard card = customerCardRepository.findById(id);
+        oldKey = id;
+        mav.addObject("card", card);
+        return mav;
+    }
+
+    @PostMapping("/editCustomerCard")
+    public String editCustomerCard(@ModelAttribute CustomerCard card) {
+        customerCardRepository.update(card, oldKey);
+        return "redirect:/customer_cards";
+    }
+
+    @GetMapping("/deleteCard")
+    public String deleteCard(@RequestParam String id) {
+        customerCardRepository.deleteById(id);
+        return "redirect:/customer_cards";
+    }
 }

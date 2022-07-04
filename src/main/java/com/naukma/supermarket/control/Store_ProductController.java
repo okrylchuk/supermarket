@@ -1,6 +1,5 @@
 package com.naukma.supermarket.control;
 
-import com.naukma.supermarket.model.Category;
 import com.naukma.supermarket.model.Product;
 import com.naukma.supermarket.model.Store_Product;
 import com.naukma.supermarket.repository.ProductRepository;
@@ -25,7 +24,7 @@ public class Store_ProductController {
     public ModelAndView showAll() {
         ModelAndView modelAndView = new ModelAndView();
         List<Store_Product> productList = store_productRepository.findAll();
-        modelAndView.setViewName("Store_ProductDetails");
+        modelAndView.setViewName("/store_product/Store_ProductDetails");
         modelAndView.addObject("productList", productList);
         return modelAndView;
     }
@@ -37,7 +36,7 @@ public class Store_ProductController {
         model.addAttribute("product", new Store_Product());
         model.addAttribute("listProducts", listProducts);
         model.addAttribute("listStoreProducts", listStoreProducts);
-        return "add-store-product";
+        return "/store_product/add-store-product";
     }
 
     @PostMapping("/saveStoreProduct")
@@ -48,7 +47,7 @@ public class Store_ProductController {
 
     @GetMapping("/storeProductEditForm")
     public ModelAndView storeProductEditForm(@RequestParam String id) {
-        ModelAndView mav = new ModelAndView("/edit-store-product-form");
+        ModelAndView mav = new ModelAndView("/store_product/edit-store-product-form");
         Store_Product product = store_productRepository.findById(id);
         mav.addObject("product", product);
         return mav;

@@ -24,8 +24,14 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     // UPDATE
     @Override
-    public int update(Category category) {
-        return jdbcTemplate.update("UPDATE category SET category_name=? WHERE category_number=?",
+    public int update(Category category, long id) {
+
+        String begin = "UPDATE category SET category_name=?, category_number=? WHERE category_number=";
+        String oldKey = String.valueOf(id);
+        String sql = begin + oldKey;
+
+
+        return jdbcTemplate.update(sql,
                 new Object[] { category.getCategory_name(), category.getCategory_number() });
     }
 

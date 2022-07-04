@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,8 +29,18 @@ public class Employee {
 
     private Long id_employee;
 
+    private String empl_surname;
+    private String empl_name;
+    private String empl_patronymic;
+    private double salary;
+    private Date dateOfBirth;
+    private Date dateOfStart;
+    private String phone_number;
+    private String city;
+    private String street;
+    private String zip_code;
 
-    private String email;
+    private String login;
     private String password;
     private Role empl_role;
     private Status status;

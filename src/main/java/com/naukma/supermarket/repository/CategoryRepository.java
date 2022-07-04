@@ -7,7 +7,7 @@ import java.util.List;
 public interface CategoryRepository {
 
     int save(Category category);
-    int update(Category category);
+    int update(Category category, long id);
     Category findById(long id);
     int deleteById(long id);
     List<Category> findAll();

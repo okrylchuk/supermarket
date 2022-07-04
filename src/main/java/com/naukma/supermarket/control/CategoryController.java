@@ -15,6 +15,7 @@ public class CategoryController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+    private long oldKey;
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('category:read')")
@@ -27,7 +28,7 @@ public class CategoryController {
     }
 
     @GetMapping({"/addCategoryForm"})
-    @PreAuthorize("hasAuthority('category:write')")
+    //@PreAuthorize("hasAuthority('category:write')")
     public ModelAndView addCategoryForm() {
         ModelAndView mav = new ModelAndView("category/add-category-form");
         Category newCategory = new Category();
@@ -36,30 +37,32 @@ public class CategoryController {
     }
 
     @PostMapping("/saveCategory")
-    @PreAuthorize("hasAuthority('category:write')")
+    //@PreAuthorize("hasAuthority('category:write')")
     public String saveCategory(@ModelAttribute Category category) {
         categoryRepository.save(category);
         return "redirect:/categories";
     }
 
     @GetMapping("/showEditForm")
-    @PreAuthorize("hasAuthority('category:write')")
+    //@PreAuthorize("hasAuthority('category:write')")
     public ModelAndView showEditForm(@RequestParam Long id) {
         ModelAndView mav = new ModelAndView("/category/edit-category-form");
         Category category = categoryRepository.findById(id);
+        oldKey = category.getCategory_number();
         mav.addObject("category", category);
+        mav.addObject("key", oldKey);
         return mav;
     }
 
     @PostMapping("/editCategory")
-    @PreAuthorize("hasAuthority('category:write')")
+    //@PreAuthorize("hasAuthority('category:write')")
     public String editCategory(@ModelAttribute Category category) {
-        categoryRepository.update(category);
+        categoryRepository.update(category, oldKey);
         return "redirect:/categories";
     }
 
     @GetMapping("/deleteCategory")
-    @PreAuthorize("hasAuthority('category:write')")
+    //@PreAuthorize("hasAuthority('category:write')")
     public String deleteCategory(@RequestParam Long id) {
         categoryRepository.deleteById(id);
         return "redirect:/categories";
